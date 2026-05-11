@@ -29,3 +29,27 @@ addresses using `VMStructs`.
 ### Supported OS
 
 Linux 3.2+ 64-bit
+
+
+# gcutil.py
+
+用Python来采集jvm的gc指标，类似于 jstat -gcutil pid，适用缺少jstat命令的jre运行环境
+
+适用于 Linux 64 bit, Aarch64 & X86_64 OS
+
+### Usage
+
+```
+# ./gcutil.py 1861925
+{'s0': 0.0, 's1': 99.9997456874957, 'e': 29.166657394835983, 'o': 1.0181403245726859, 'm': 94.42428739944307, 'ccs': 86.13516000600961, 'ygc': 2.0, 'ygct': 0.255731984, 'fgc': 0.0, 'fgct': 0.0, 'gct': 0.255731984}
+
+
+# /opt/jdk8/bin/jstat -gcutil 1861925
+  S0     S1     E      O      M     CCS    YGC     YGCT    FGC    FGCT     GCT
+  0.00 100.00  29.17   1.02  94.42  86.14      2    0.256     0    0.000    0.256
+
+# /opt/jdk21/bin/jstat -gcutil 1861925
+  S0     S1     E      O      M     CCS    YGC     YGCT     FGC    FGCT     CGC    CGCT       GCT
+  0.00 100.00  29.17   1.02  94.42  86.14      2     0.256     0     0.000     -         -     0.256
+
+```
